@@ -15,41 +15,70 @@ import SilentStar_120_Em_OrganSynth from './loop_samples/SilentStar_120_Em_Organ
 
 
 let interval;
-let num = 8000
+let num;
 
 
 
 function Looper() {
     const [power, setPower] = useState(false)
     const [arePlaying, setArePlaying] = useState(0)
+    const [qeue, setQeue] = useState([])
 
-console.log(arePlaying)
+
+    function addToQeue(sound) {
+        // add to array to queue [...qeue]
+
+
+
+    }
+
+    console.log(arePlaying)
 
     useEffect(() => {
         setArePlaying(0)
+        // clearInterval(interval)
     }, [power])
 
-  function  countPlaying(x) {
+    function startInterval() {
+       interval = setInterval(() => {
+           console.log('And')
+       }, 8000);
+
+
+    }
+
+    function countPlaying(x) {
+        if (arePlaying === 0 && x === 1) {
+            startInterval()
+        }
+        if (arePlaying === 0 && !power ){
+            clearInterval(interval)
+        }
+
+
         if (power) {
             setArePlaying(arePlaying + x)
         }
-        
+
     }
+
+    ////kעשות מערך של אובייקטים שמכיל כל קובץ.  וכל פד קורא לפונקיית להרוספה לתור 
+
     return (
         <div className="Looper">
             <button onClick={() => { setPower(true) }} style={{ "background": power ? "lightgreen" : "lightgray" }}>ON</button>
             <button onClick={() => { setPower(false) }} style={{ "background": power ? "lightgray" : "lightblue" }}>OFF</button>
             <div className="Looper-body">
-                <Pad loop={future_funk} inOn={power} on={countPlaying} >future funk</Pad>
-                <Pad loop={stutter_breakbeats} inOn={power} on={countPlaying}>stutter breakbeats</Pad>
-                <Pad loop={Bass_Warwick_heavy_funk_groove} inOn={power} on={countPlaying} >Bass Warwick heavy funk groove</Pad>
-                <Pad loop={electric_guitar_coutry_slide} inOn={power} on={countPlaying}>Electric guitar coutry slide</Pad>
-                <Pad loop={FUD_120_StompySlosh} inOn={power} on={countPlaying} >FUD 120 StompySlosh</Pad>
-                <Pad loop={GrooveB_120bpm_Tanggu} inOn={power} on={countPlaying} >GrooveB 120bpm Tanggu</Pad>
-                <Pad loop={MazePolitics_120_Perc} inOn={power} on={countPlaying} >MazePolitics 120 Perc</Pad>
-                <Pad loop={PAS3GROOVE1_03B} inOn={power} on={countPlaying} >PAS3GROOVE1 03B</Pad>
-                <Pad loop={SilentStar_120_Em_OrganSynth} inOn={power} on={countPlaying} >SilentStar 120 Em OrganSynth</Pad>
-                
+                <Pad loop={future_funk} isOn={power} on={countPlaying} num={num}>future funk</Pad>
+                <Pad loop={stutter_breakbeats} isOn={power} on={countPlaying} num={num}>stutter breakbeats</Pad>
+                <Pad loop={Bass_Warwick_heavy_funk_groove} isOn={power} on={countPlaying} num={num} >Bass Warwick heavy funk groove</Pad>
+                <Pad loop={electric_guitar_coutry_slide} isOn={power} on={countPlaying} num={num}>Electric guitar coutry slide</Pad>
+                <Pad loop={FUD_120_StompySlosh} isOn={power} on={countPlaying} num={num}>FUD 120 StompySlosh</Pad>
+                <Pad loop={GrooveB_120bpm_Tanggu} isOn={power} on={countPlaying} num={num}>GrooveB 120bpm Tanggu</Pad>
+                <Pad loop={MazePolitics_120_Perc} isOn={power} on={countPlaying} num={num}>MazePolitics 120 Perc</Pad>
+                <Pad loop={PAS3GROOVE1_03B} isOn={power} on={countPlaying} num={num}>PAS3GROOVE1 03B</Pad>
+                <Pad loop={SilentStar_120_Em_OrganSynth} isOn={power} on={countPlaying} num={num}>SilentStar 120 Em OrganSynth</Pad>
+
             </div>
 
 
