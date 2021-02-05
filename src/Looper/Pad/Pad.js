@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import useSound from 'use-sound';
 import './Pad.css'
-
+const num = require('../Looper')
+// console.log()
 let interval;
 
 function Pad(props) {
-    const [play, { stop, isPlaying }] = useSound(props.loop, { loop: true });
+    const [play, { stop, isPlaying }] = useSound(props.loop, { loop: true},{ seek: num.num  });
     const [isPlay, setPlay] = useState(false)
     const isOn = props.isOn
 
@@ -13,22 +14,31 @@ function Pad(props) {
     useEffect(() => {
         setPlay(false)
         stop()
-        clearInterval(interval)
     }, [isOn])
 
+    function playTime() {
+        if (num.num === 8000) {
+            play()
+        } else {
+           
+            interval = setTimeout(() => {
+                play()
+                // console.log('started')
+            }, num.num-200);
+
+        }
+    }
     
 
-
     function toggle() {
-        console.log(props.num)
         if (!isPlay && props.isOn) {
             setPlay(true)
-           play()
+            playTime()
             { props.on(1) }
         } else {
             setPlay(false)
             stop()
-           
+            clearInterval(interval)
             { props.on(-1) }
         }
     }
