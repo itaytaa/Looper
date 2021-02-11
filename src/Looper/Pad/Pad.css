@@ -1,9 +1,9 @@
 .Pad{
-    width:100px;
-    height:100px;
+    width:120px;
+    height:120px;
     background-color: rgb(209, 47, 47);
     display: flex;
     justify-content: center;
     align-items: center;
-  
+    box-shadow: 1px -3px 27px 11px rgba(0,0,0,0.75) inset;
 }

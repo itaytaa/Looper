@@ -40,10 +40,11 @@ function Looper() {
 
     function startInterval() {
         interval = setInterval(() => {
-            num -= 500
+            console.log(num)
+            num -= 1000
             // console.log(num)
             if (num === 0) num = 8000
-        }, 500)
+        }, 1000)
     }
 
     function countPlaying(x) {
